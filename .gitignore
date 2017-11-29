@@ -1,3 +1,8 @@
 /build/
 /.idea
 .idea/
+*.iml
+**/.iml
+.classpath
+target/
+bin/
