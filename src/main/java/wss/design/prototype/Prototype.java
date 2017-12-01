@@ -1,4 +1,4 @@
-package design.prototype;
+package wss.design.prototype;
 
 import java.io.*;
 

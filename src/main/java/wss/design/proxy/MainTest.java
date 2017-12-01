@@ -1,4 +1,4 @@
-package wss.design.Proxy;
+package wss.design.proxy;
 
 /**
  * @ClassName:

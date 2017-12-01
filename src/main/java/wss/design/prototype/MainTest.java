@@ -1,10 +1,8 @@
-package design.prototype;
+package wss.design.prototype;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import wss.design.Proxy.Proxy;
-import wss.design.Proxy.Sourceable;
-import wss.design.Proxy.Target;
+import wss.design.proxy.Target;
 
 import java.io.IOException;
 

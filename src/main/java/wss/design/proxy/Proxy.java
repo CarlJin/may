@@ -1,4 +1,4 @@
-package wss.design.Proxy;
+package wss.design.proxy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

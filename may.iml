@@ -15,6 +15,9 @@
         </sourceRoots>
       </configuration>
     </facet>
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6">
     <output url="file://$MODULE_DIR$/target/classes" />
@@ -32,5 +35,19 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.3" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-core:5.0.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.0.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.0.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.0.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.0.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.0.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-test:5.0.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.6.11" level="project" />
+    <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.6.11" level="project" />
+    <orderEntry type="library" name="Maven: cglib:cglib:3.2.5" level="project" />
+    <orderEntry type="library" name="Maven: org.ow2.asm:asm:5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.ant:ant:1.9.6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.ant:ant-launcher:1.9.6" level="project" />
+    <orderEntry type="library" name="Maven: org.javassist:javassist:3.22.0-CR2" level="project" />
   </component>
 </module>
