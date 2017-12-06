@@ -1,5 +1,6 @@
 package wss.log;
 
+import com.alibaba.fastjson.JSON;
 import javassist.*;
 import javassist.bytecode.CodeAttribute;
 import javassist.bytecode.LocalVariableAttribute;
@@ -13,6 +14,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,17 +39,23 @@ public class LogAspect {
         String methodDesc = desc.desc();
 
         String classType = pjp.getTarget().getClass().getName();
+        StringBuilder sb = new StringBuilder();
+        sb.append("[").append(methodDesc).append("]:");
         try {
             Class<?> clazz = Class.forName(classType);
             String clazzName = clazz.getName();
-            Map<String, Object> nameAndArgs = getFieldsName(this.getClass(), clazzName, methodName, args);
+            // Map<String, Object> nameAndArgs = getFieldsName(this.getClass(), clazzName, methodName, args);
+            Arrays.stream(pjp.getArgs()).forEach(arg -> sb.append(JSON.toJSONString(arg)).append(","));
+            if (sb.length() > 1) {
+                sb.setLength(sb.length() - 1);
+            }
 
             Field loggerField = clazz.getDeclaredField("logger");
 
             loggerField.setAccessible(true);
 
             Logger logger = (Logger) loggerField.get(null);
-            logger.info(methodName, "[" + methodDesc + "]:" + nameAndArgs.toString());
+            logger.info(methodName, sb.toString());
         } catch (Exception e) {
             LogAspectLog.error("打印方法{}异常，异常信息{}", methodName, e.toString());
         }

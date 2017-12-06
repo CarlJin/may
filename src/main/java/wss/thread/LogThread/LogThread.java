@@ -24,9 +24,9 @@ public class LogThread {
     static int begin = 1;
 
     public static void main(String[] args) throws InterruptedException, IOException {
-        threadPool(10000);
+        //threadPool(10000);
         //completableFuture(10000);
-        // serial(10000);
+        serial(1);
 
     }
 

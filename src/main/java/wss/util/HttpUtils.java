@@ -24,7 +24,7 @@ public abstract class HttpUtils {
 
     public static String doHttpRequest(String data, String requestUrl, String requestMethod, int timeout)
             throws IOException {
-        return HttpUtils.doHttpRequest(data, requestUrl, requestMethod, CONTENT_TYPE_URLENCODED, timeout);
+        return HttpUtils.doHttpRequest(data, requestUrl, requestMethod, CONTENT_TYPE_APPLICATION_JSON, timeout);
     }
 
     public static String doHttpRequest(String data, String requestUrl, String requestMethod, String contentType,
