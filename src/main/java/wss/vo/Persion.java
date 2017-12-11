@@ -7,6 +7,7 @@ package wss.vo;
  * @date: 2017-12-11 上午9:49
  **/
 public class Persion {
+    private String id;
     private String name;
     private Integer age;
     private String gender;
@@ -22,6 +23,14 @@ public class Persion {
 
     public String getName() {
         return name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setName(String name) {

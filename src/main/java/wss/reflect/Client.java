@@ -36,7 +36,5 @@ public class Client {
         logger.info(subjectProxy.getClass().getName());
         subjectProxy.hello("你好");
         subjectProxy.rent();
-
-
     }
 }
