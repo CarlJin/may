@@ -22,20 +22,15 @@ public abstract class HttpUtils {
     public final static String CONTENT_TYPE_URLENCODED = "application/x-www-form-urlencoded";
     public final static String CONTENT_TYPE_APPLICATION_JSON = "application/json";
 
-    public static String doHttpRequest(String data, String requestUrl, String requestMethod, int timeout)
-            throws IOException {
-        return HttpUtils.doHttpRequest(data, requestUrl, requestMethod, CONTENT_TYPE_APPLICATION_JSON, timeout);
-    }
-
-    public static String doHttpRequest(String data, String requestUrl, String requestMethod, String contentType,
-                                       int timeout) throws IOException {
+    public static String doHttpRequest(String data, String requestUrl, String requestMethod, int timeout) throws IOException {
         URL url = null;
         HttpURLConnection httpurlconnection = null;
         try {
             url = new URL(requestUrl);
             httpurlconnection = (HttpURLConnection) url.openConnection();
             httpurlconnection.setRequestMethod(requestMethod.toUpperCase());
-            httpurlconnection.setRequestProperty("Content-Type", contentType);
+            httpurlconnection.setRequestProperty("Content-Type", HttpUtils.POST.equals(requestMethod)
+                    ? CONTENT_TYPE_URLENCODED : CONTENT_TYPE_APPLICATION_JSON);
             httpurlconnection.setDoInput(true);
             httpurlconnection.setDoOutput(true);
             httpurlconnection.setConnectTimeout(timeout);

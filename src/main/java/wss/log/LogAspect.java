@@ -31,9 +31,14 @@ public class LogAspect {
 
     private static final Logger LogAspectLog = LoggerFactory.getLogger(LogAspect.class);
 
+    /**
+     * 通过这种方法日志的行数打印的是切面里面的行数 不是原来类中的行数
+     *
+     * @param pjp
+     * @param desc 注解用来描述方法名称
+     */
     @Before(value = "execution(* wss.*.*(..)) && @annotation(desc)")
     public void printLog(JoinPoint pjp, MethodDesc desc) {
-
         String methodName = pjp.getSignature().getName();
         Object[] args = pjp.getArgs();
         String methodDesc = desc.desc();

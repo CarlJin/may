@@ -6,6 +6,9 @@ import org.slf4j.LoggerFactory;
 import wss.util.HttpUtils;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
@@ -26,8 +29,11 @@ public class LogThread {
     public static void main(String[] args) throws InterruptedException, IOException {
         //threadPool(10000);
         //completableFuture(10000);
-        serial(1);
-
+        //serial(100);
+        LocalDateTime beginTime = LocalDateTime.now();
+        Thread.sleep(1000);
+        LocalDateTime endTime = LocalDateTime.now();
+        logger.info("耗时{}",Duration.between(endTime, beginTime).toMillis());
     }
 
     /**
@@ -36,7 +42,8 @@ public class LogThread {
     public static void threadPool(int num) throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(100);
 
-        long beginTime = System.nanoTime();
+        LocalDateTime beginTime = LocalDateTime.now();
+
         for (int i = 0; i < num; i++) {
             Future<String> submit = executorService.submit(() -> {
                 logger.info("当前线程{}", Thread.currentThread().getName());
@@ -53,8 +60,10 @@ public class LogThread {
             }
             Thread.sleep(10);
         }
-        long endTime = System.nanoTime();
-        logger.info("处理请求{}消耗时间{}", num, TimeUnit.NANOSECONDS.toMillis(endTime - beginTime));
+
+        LocalDateTime endTime = LocalDateTime.now();
+
+        logger.info("处理请求{}消耗时间{}", num, Duration.between(endTime, beginTime).toMillis());
 
     }
 
@@ -98,7 +107,7 @@ public class LogThread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        logger.info("第{}执行查询，查询结果{}", i, response);
+        logger.info("当前线程{}第{}执行查询，查询结果{}", Thread.currentThread().getName(), i, response);
 
         return response;
     }
