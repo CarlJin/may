@@ -6,14 +6,19 @@ import javassist.bytecode.CodeAttribute;
 import javassist.bytecode.LocalVariableAttribute;
 import javassist.bytecode.MethodInfo;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +35,36 @@ import java.util.Map;
 public class LogAspect {
 
     private static final Logger LogAspectLog = LoggerFactory.getLogger(LogAspect.class);
+
+    @Pointcut("execution(* wss.design.*.*(..))" +
+            "||execution(* wss.java8.*.*(..))" +
+            "||execution(* wss.reflect.*.*(..))")
+    public void executeTimePointcut() {
+
+    }
+
+    /**
+     * 用来打印接口的执行时间
+     *
+     * @param pjp
+     * @return
+     * @throws Throwable
+     */
+    @Around("executeTimePointcut()")
+    public Object executeTime(ProceedingJoinPoint pjp) throws Throwable {
+        Instant beginTim = Instant.now();
+
+        String className = pjp.getTarget().getClass().getName();
+        String methodName = pjp.getSignature().getName();
+
+        Object proceed = pjp.proceed();
+
+        Instant endTime = Instant.now();
+
+        LogAspectLog.info("{}.{}[执行时间{}ms]", className, methodName, Duration.between(beginTim, endTime).toMillis());
+
+        return proceed;
+    }
 
     /**
      * 通过这种方法日志的行数打印的是切面里面的行数 不是原来类中的行数
